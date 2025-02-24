@@ -50,7 +50,7 @@ const Hero = () => {
     );
 
     return (
-        <div id="home" className="bg-center bg-cover bg-no-repeat relative pb-16 overflow-hidden bg-hero-bg-image max-sm:bg-black/20">
+        <div id="home" className="bg-center bg-cover bg-no-repeat pb-16 overflow-hidden bg-hero-bg-image max-sm:bg-black/20">
             <NavBar />
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
@@ -74,9 +74,9 @@ const Hero = () => {
                     </form>
                 </div>
 
-                <div className="pt-[70px]">
+                <div className="pt-[70px] ">
                     {filteredBlogs.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto">
                             {filteredBlogs.map((blog) => (
                                 <div key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] w-[366px]">
                                     <div className="bg-black/90 text-white relative rounded-[10px]">

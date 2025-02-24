@@ -44,7 +44,6 @@ const NavBar = () => {
 
     return (
         <>
-            {/* Marquee Section */}
             <div id="marquee" className="bg-sky-blue flex md:py-[18px] py-2">
                 <Marquee>
                     {MARQUEE_DATA.map((obj: MarqueeItem, i: number) => (
@@ -104,49 +103,49 @@ const NavBar = () => {
                             className="lg:hidden z-50 cursor-pointer"
                             onClick={() => setOpen(!open)}
                         >
-                            <button className="overflow-hidden relative z-50 lg:hidden size-[30px] h-5 flex flex-col justify-between items-center">
+                            <button className="overflow-hidden relative z-50 lg:hidden size-[30px] h-5  flex flex-col justify-between items-center">
                                 <span
-                                    className={`bg-white/70 rounded-full w-[39px] h-1 block transition-all duration-300 ${open ? "translate-x-10" : ""}`}
+                                    className={`bg-white rounded-full w-[39px] h-1 block transition-all duration-300 ${open ? "translate-x-10" : ""}`}
                                 ></span>
                                 <span
-                                    className={`bg-white/70 rounded-full after:rounded-lg w-[39px] h-1 block relative transition-all duration-300 ${open ? "rotate-45 after:rotate-90 after:!bg-white/70" : ""
+                                    className={`bg-white rounded-full after:rounded-lg  w-[39px] h-1 block relative after:bg-transparent after:absolute after:top-0 after:left-0 after:w-full after:h-1 after:transition-all after:duration-300 transition-all duration-300 ${open ? "rotate-45 after:rotate-90 after:!bg-white" : ""
                                         }`}
                                 ></span>
                                 <span
-                                    className={`bg-white/70 rounded-full w-[39px] h-1 block transition-all duration-300 ${open ? "-translate-x-10" : ""}`}
+                                    className={`bg-white rounded-full  w-[39px] h-1 block transition-all duration-300 ${open ? "-translate-x-10" : ""}`}
                                 ></span>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
-                <div
-                    className={`w-full h-full bg-black flex gap-5 flex-col justify-center items-center lg:hidden`}
-                >
-                    {HEADER_LIST.map((item: HeaderItem, i: number) => (
-                        <a
-                            key={i}
+                {open && (
+                    <div className="fixed inset-0 bg-black flex gap-5 flex-col justify-center items-center lg:hidden z-30">
+                        {HEADER_LIST.map((item: HeaderItem, i: number) => (
+                            <a
+                                key={i}
+                                onClick={() => setOpen(false)}
+                                href={item.link}
+                                className="font-bold font-source text-base text-white/70"
+                            >
+                                {item.title}
+                            </a>
+                        ))}
+                        <button
                             onClick={() => setOpen(false)}
-                            href={item.link}
-                            className="font-bold font-source text-base text-white/70"
+                            className="text-base font-semibold text-sky-blue py-[10px] px-4 h-[53px] border border-sky-blue rounded-full hover:text-black hover:bg-sky-blue transition-all duration-500 ease-linear"
                         >
-                            {item.title}
-                        </a>
-                    ))}
-                    <button
-                        onClick={() => setOpen(false)}
-                        className="text-base font-semibold text-sky-blue py-[10px] px-4 h-[53px] border border-sky-blue rounded-full hover:text-black hover:bg-sky-blue transition-all duration-500 ease-linear"
-                    >
-                        Sign Up
-                    </button>
-                    <button
-                        onClick={() => setOpen(false)}
-                        className="text-base font-semibold hover:text-sky-blue text-black bg-sky-blue hover:bg-transparent py-[10px] h-[53px] px-6 border border-sky-blue rounded-full transition-all duration-500 ease-linear"
-                    >
-                        Login
-                    </button>
-                </div>
+                            Sign Up
+                        </button>
+                        <button
+                            onClick={() => setOpen(false)}
+                            className="text-base font-semibold hover:text-sky-blue text-black bg-sky-blue hover:bg-transparent py-[10px] h-[53px] px-6 border border-sky-blue rounded-full transition-all duration-500 ease-linear"
+                        >
+                            Login
+                        </button>
+                    </div>
+                )}
+
             </div>
         </>
     );
