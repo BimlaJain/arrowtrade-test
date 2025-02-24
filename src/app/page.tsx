@@ -1,10 +1,10 @@
-import NavBar from '@/components/common/NavBar'
+import Hero from '@/components/Hero'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <NavBar/>
+      <Hero/>
     </div>
   )
 }
