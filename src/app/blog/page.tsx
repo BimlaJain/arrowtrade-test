@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero"; 
 import LatestArticle from "@/components/LatestArticle";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 
 const Page = () => {
   const router = useRouter();
@@ -21,11 +22,11 @@ const Page = () => {
   };
 
   return (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <Hero pageIndex={pageIndex} onPageChange={handlePageChange} />
       <LatestArticle />
       <Footer/>
-    </div>
+    </Suspense>
   );
 };
 
