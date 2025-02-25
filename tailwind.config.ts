@@ -15,6 +15,8 @@ export default {
         "green": "#00C11F",
         "light-black": "#232224",
         "dark-black": "#070508",
+        "dark-grey": "#121414",
+        "simple-black":"#121414"
       },
       fontFamily: {
         "Inter": "'Inter', 'serif'"

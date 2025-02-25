@@ -43,6 +43,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                 authorImage: "/assets/images/png/jerome.png",
                 date: "31 Jan 2025",
                 image: "/assets/images/png/real-time.png",
+                isFeatured: true,
             },
             {
                 id: blogs.length + 2,
@@ -52,8 +53,9 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                 description: "Experience lightning-fast execution, customizable charts, and an intuitive interface designed for traders of all levels.",
                 author: "Eleanor Pena",
                 authorImage: "/assets/images/png/eleanor.png",
-                date: "29 Jan 2025",
                 image: "/assets/images/png/trading.png",
+                isFeatured: true,
+                date: "31 Jan 2025",
             },
             {
                 id: blogs.length + 3,
@@ -62,9 +64,10 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                 readTime: 5,
                 description: "Mastering the markets involves developing a comprehensive understanding of how financial markets work, creating.",
                 author: "Wade Warren",
-                authorImage: "/assets/images/png/wade.png",
-                date: "20 Dec 2024",
+                authorImage: "/assets/images/png/wade.png", 
                 image: "/assets/images/png/mastring.png",
+                isFeatured: true,
+                date: "20 Dec 2024",
             },
         ];
 
@@ -79,8 +82,17 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
         blog.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handleCardClick = (blogTitle: string) => {
+        const formattedSlug = blogTitle
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+            .trim()
+            .replace(/\s+/g, "-"); // Convert spaces to hyphens
+
+        router.push(`/blog/${formattedSlug}`);
+    };
     return (
-        <div id="home" className="bg-center bg-cover bg-no-repeat bg-hero-bg-image max-sm:bg-black/20 relative overflow-hidden">
+        <div id="home" className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
             <NavBar />
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
@@ -108,16 +120,16 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                     {filteredBlogs.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
                             {filteredBlogs.map((blog) => (
-                                <div key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
+                                <div onClick={() => handleCardClick(blog.title)} key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
                                     <div className="bg-black/90 text-white relative rounded-[10px] overflow-hidden">
                                         <p className="text-white text-base font-semibold leading-customXmd absolute top-4 right-4">{blog.date}</p>
                                         <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
                                         <div className="px-3 pb-[39px]">
-                                            <div className="flex gap-2 mb-2">
-                                                <span className="border-sky-blue border rounded-full leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center">{blog.category}</span>
+                                            <div className="flex gap-2 mb-2 absolute top-[45%]">
+                                                <span className="border-sky-blue border rounded-full bg-simple-black leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center">{blog.category}</span>
                                                 <span className="text-white/70 bg-light-black font-normal leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px]">{blog.readTime} min read</span>
                                             </div>
-                                            <h3 className="text-xl font-semibold">{blog.title}</h3>
+                                            <h3 className="text-xl font-semibold pt-6">{blog.title}</h3>
                                             <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-2 mt-6">
