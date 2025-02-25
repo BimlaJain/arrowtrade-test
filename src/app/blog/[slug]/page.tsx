@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import LatestArticle from "@/components/LatestArticle";
 import { BLOGS_CARD } from "@/utils/helper";
 import Image from "next/image";
+import MarketInsights from "@/components/MarketInsights";
 
 const formatTitle = (title: string) =>
     title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
@@ -19,10 +20,23 @@ export default function BlogDetail() {
         <div>
             <NavBar />
 
-            <section className="bg-dark-black text-white md:pl-4 px-4 max-w-[1920] mx-auto">
+            <section className="bg-dark-black text-white md:pl-4 max-md:px-4 max-w-[1920] mx-auto">
                 <div className="2xl:max-w-[1400px] mx-auto flex max-md:flex-wrap  items-center relative lg:justify-between justify-center gap-8">
                     <div className="max-w-[510px] lg:ml-auto mx-auto  pt-[100px] max-md:pr-4">
-                        <h2 className="lg:text-customMd md:text-5xl text-4xl font-bold pb-4 lg:max-w-[480px] leading-customMd">{blog.title}</h2>
+                        <h2 className="lg:text-customMd md:text-5xl text-4xl font-bold pb-4 lg:max-w-[480px] leading-customMd">
+                            {(() => {
+                                const words = blog.title.split(" ");
+                                const lastTwoWords = words.slice(-2).join(" ");
+                                const remainingWords = words.slice(0, -2).join(" ");
+
+                                return (
+                                    <>
+                                        {remainingWords}{" "}
+                                        <span className="text-sky-blue">{lastTwoWords}</span> 
+                                    </>
+                                );
+                            })()}
+                        </h2>
                         <p className="mt-3 text-white/70 text-lg">{blog.description}</p>
 
                         <div className="flex flex-wrap items-center mt-6 space-x-4">
@@ -42,13 +56,12 @@ export default function BlogDetail() {
                             alt={blog.title}
                             width={720}
                             height={570}
-                            className=" shadow-lg xl:max-w-[720px] max-md:max-w-[720px] w-full max-lg:mx-auto md:h-[570px] max-sm:h-[250px] object-cover xl:right-0 2xl:right-auto"
+                            className=" shadow-lg xl:max-w-[720px] max-md:max-w-[720px] w-full max-lg:mx-auto md:h-[570px] max-md:h-[250px] object-cover xl:right-0 2xl:right-auto"
                         />
                     </div>
                 </div>
             </section>
-
-
+            <MarketInsights/>
             <LatestArticle />
             <Footer />
         </div>

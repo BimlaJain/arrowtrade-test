@@ -85,9 +85,9 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
     const handleCardClick = (blogTitle: string) => {
         const formattedSlug = blogTitle
             .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+            .replace(/[^a-z0-9\s-]/g, "") 
             .trim()
-            .replace(/\s+/g, "-"); // Convert spaces to hyphens
+            .replace(/\s+/g, "-"); 
 
         router.push(`/blog/${formattedSlug}`);
     };

@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import CommonButton from "./CommonButton";
+import { usePathname } from "next/navigation";  
+
 
 interface HeaderItem {
     title: string;
@@ -20,6 +22,7 @@ const NavBar = () => {
     const [open, setOpen] = useState<boolean>(false);
     const [Active, setActive] = useState<number | null>(4);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
+    const pathname = usePathname()
 
     const handleScroll = () => {
         if (window.scrollY > 80) {
@@ -43,10 +46,10 @@ const NavBar = () => {
     useEffect(() => {
         document.body.style.overflow = open ? "hidden" : "auto";
     }, [open]);
+    const isBlogSlug = pathname.startsWith("/blog/") && pathname !== "/blog";
 
     return (
         <>
-            {/* Top Marquee */}
             <div className="bg-sky-blue flex md:py-[18px] py-2">
                 <Marquee>
                     {MARQUEE_DATA.map((obj: MarqueeItem, i: number) => (
@@ -61,7 +64,6 @@ const NavBar = () => {
                 </Marquee>
             </div>
 
-            {/* Navbar */}
             <div
                 id="navbar"
                 className={`z-40 fixed left-0 w-full shadow-lg transition-all duration-300 ${isScrolled ? "top-0" : "mt-4"
@@ -77,7 +79,7 @@ const NavBar = () => {
                                 <li key={i}>
                                     <Link
                                         onClick={() => clickHandler(i)}
-                                        href={item.link}
+                                        href={item.title === "Blog" && isBlogSlug ? "/blog" : item.link}
                                         className={`font-normal text-base hover:text-sky-blue transition-all duration-300 ${Active === i ? "text-sky-blue" : "text-white/70"
                                             }`}
                                     >
@@ -103,7 +105,6 @@ const NavBar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu */}
                 <div className={`w-full h-full bg-black transition-all duration-500 left-0 lg:-top-full z-40 fixed flex gap-5 flex-col justify-center items-center ${open ? "top-0 left-0" : "-top-full"}`}>
                     {HEADER_LIST.map((item: HeaderItem, i: number) => (
                         <a key={i} onClick={() => setOpen(false)} href={item.link} className="font-bold font-source text-base text-white/70">

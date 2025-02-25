@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Hero from "@/components/Hero"; 
+import LatestArticle from "@/components/LatestArticle";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   const router = useRouter();
@@ -21,6 +23,8 @@ const Page = () => {
   return (
     <div>
       <Hero pageIndex={pageIndex} onPageChange={handlePageChange} />
+      <LatestArticle />
+      <Footer/>
     </div>
   );
 };
