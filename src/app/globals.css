@@ -4,3 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+#nprogress .bar {
+    background: white !important;
+   height: 4px !important;
+}
+
+
+#nprogress .spinner-icon {
+    border-top-color: white !important;
+    border-left-color: white !important;
+}
+
