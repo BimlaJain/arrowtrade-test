@@ -30,7 +30,7 @@ const MarketInsights = () => {
                             alt="rmarket-insight"
                             className="max-w-[635px] w-full object-cover pointer-events-none" width={635} height={550} />
                     </div>
-                    <div className='border border-sky-blue rounded-3xl py-[30px] max-w-[364px] mx-auto h-[525px] sticky max-md:mt-10 top-28 self-start'>
+                    <div className='border border-sky-blue rounded-3xl py-[30px] max-w-[364px] mx-auto h-[525px] sticky max-md:mt-10 top-28 self-start bg-cover bg-no-repeat bg-center' style={{ backgroundImage: `url(/assets/images/png/card-bg.png)` }}>
                         <div className='flex items-center gap-[10px] pl-5 pb-6'>
                             <Image src="/assets/images/png/darrell.png"
                                 alt="darrell"
