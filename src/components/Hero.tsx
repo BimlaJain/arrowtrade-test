@@ -5,6 +5,7 @@ import React from "react";
 import NavBar from "./common/NavBar";
 import Image from "next/image";
 import { BLOGS_CARD } from "@/utils/helper";
+import CommonButton from "./common/CommonButton";
 
 interface HeroProps {
     pageIndex: number;
@@ -79,7 +80,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
     );
 
     return (
-        <div id="home" className="bg-center bg-cover bg-no-repeat pb-16 overflow-hidden bg-hero-bg-image max-sm:bg-black/20 relative">
+        <div id="home" className="bg-center bg-cover bg-no-repeat pb-16 bg-hero-bg-image max-sm:bg-black/20 relative overflow-hidden">
             <NavBar />
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
@@ -108,7 +109,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
                             {filteredBlogs.map((blog) => (
                                 <div key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
-                                    <div className="bg-black/90 text-white relative rounded-[10px]">
+                                    <div className="bg-black/90 text-white relative rounded-[10px] overflow-hidden">
                                         <p className="text-white text-base font-semibold leading-customXmd absolute top-4 right-4">{blog.date}</p>
                                         <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
                                         <div className="px-3 pb-[39px]">
@@ -132,10 +133,11 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                     )}
                     <button
                         onClick={() => handlePageChange(pageIndex + 1)}
-                        className="mt-6 bg-sky-blue text-black hover:text-sky-blue px-[26.7px] py-[14.6px] flex mx-auto rounded-full hover:bg-transparent border border-sky-blue transition-all duration-500"
+                        className="mt-6 bg-sky-blue text-black text-base font-semibold hover:text-sky-blue px-[26.7px] py-[14.6px] flex mx-auto rounded-full hover:bg-transparent border border-sky-blue transition-all duration-500"
                     >
                         See All Blogs
                     </button>
+                    {/* <CommonButton onClick={() => handlePageChange(pageIndex + 1)}  text=" See All Blogs" myClass="!mt-6 !px-[26.7px] !py-[14.6px] !flex !mx-auto !border-sky-blue !bg-sky-blue !text-black hover:!text-sky-blue hover:!bg-transparent"/> */}
                 </div>
             </div>
         </div>
