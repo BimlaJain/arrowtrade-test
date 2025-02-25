@@ -115,7 +115,7 @@ export const BLOGS_CARD = [
         title: "The Psychology of Trading",
         category: "Productivity",
         readTime: 4,
-        description: "Trading isn’t just about numbers, charts, and market analysis—it’s also a game of emotions and psychology.",
+        description: "Trading isn’t just about numbers, charts, and the those market analysis—it’s also a game of emotions and psychology.",
         author: "Kristin Watson",
         authorImage: "/assets/images/png/kristin.png",
         date: "20 Dec 2024",
