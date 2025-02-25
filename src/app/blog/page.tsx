@@ -22,11 +22,13 @@ const Page = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Hero pageIndex={pageIndex} onPageChange={handlePageChange} />
-      <LatestArticle />
-      <Footer/>
+    <div>
+      <Suspense>
+        <Hero pageIndex={pageIndex} onPageChange={handlePageChange} />
+        <LatestArticle />
+        <Footer />
     </Suspense>
+    </div>
   );
 };
 
