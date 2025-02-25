@@ -65,6 +65,7 @@ export const BLOGS_CARD = [
         authorImage: "/assets/images/png/darrell.png",
         date: "31 Jan 2025",
         image: "/assets/images/png/real-time.png",
+        isFeatured: true, 
     },
     {
         id: 2,
@@ -76,6 +77,7 @@ export const BLOGS_CARD = [
         authorImage: "/assets/images/png/jerome.png",
         date: "29 Jan 2025",
         image: "/assets/images/png/trading.png",
+        isFeatured: true,  
     },
     {
         id: 3,
@@ -87,17 +89,19 @@ export const BLOGS_CARD = [
         authorImage: "/assets/images/png/eleanor.png",
         date: "20 Dec 2024",
         image: "/assets/images/png/mastring.png",
+        isFeatured: false, 
     },
     {
         id: 4,
         title: "Risk Management in Trading",
         category: "Productivity",
         readTime: 3,
-        description: "Risk management is a critical component of successful trading. without effective risk management strategies, traders.",
+        description: "Risk management is a critical component of successful trading. Without effective risk management strategies, traders can suffer heavy losses.",
         author: "Leslie Alexander",
         authorImage: "/assets/images/png/leslie.png",
         date: "31 Jan 2025",
         image: "/assets/images/png/risk.png",
+        isFeatured: false,  
     },
     {
         id: 5,
@@ -109,16 +113,19 @@ export const BLOGS_CARD = [
         authorImage: "/assets/images/png/wade.png",
         date: "29 Jan 2025",
         image: "/assets/images/png/portfolio.png",
+        isFeatured: true, 
     },
     {
         id: 6,
         title: "The Psychology of Trading",
         category: "Productivity",
         readTime: 4,
-        description: "Trading isn’t just about numbers, charts, and the those market analysis—it’s also a game of emotions and psychology.",
+        description: "Trading isn’t just about numbers, charts, and market analysis—it’s also a game of emotions and psychology.",
         author: "Kristin Watson",
         authorImage: "/assets/images/png/kristin.png",
         date: "20 Dec 2024",
         image: "/assets/images/png/physcology.png",
+        isFeatured: true,  
     },
 ];
+

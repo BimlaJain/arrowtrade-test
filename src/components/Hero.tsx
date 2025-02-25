@@ -80,7 +80,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
     );
 
     return (
-        <div id="home" className="bg-center bg-cover bg-no-repeat pb-16 bg-hero-bg-image max-sm:bg-black/20 relative overflow-hidden">
+        <div id="home" className="bg-center bg-cover bg-no-repeat bg-hero-bg-image max-sm:bg-black/20 relative overflow-hidden">
             <NavBar />
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
@@ -119,10 +119,13 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                                             </div>
                                             <h3 className="text-xl font-semibold">{blog.title}</h3>
                                             <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
-                                            <div className="flex items-center gap-2 mt-6">
-                                                <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
-                                                <p className="text-white text-base leading-customXmd font-semibold">{blog.author}</p>
-                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center gap-2 mt-6">
+                                                    <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
+                                                    <p className="text-white text-base leading-customXmd font-semibold">{blog.author}</p>
+                                                </div>
+                                                <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500 ease-linear"/>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
