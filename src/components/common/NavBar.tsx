@@ -66,7 +66,7 @@ const NavBar = () => {
 
             <div
                 id="navbar"
-                className={`z-40 fixed left-0 w-full shadow-lg transition-all duration-300 ${isScrolled ? "top-0" : "mt-4"
+                className={`z-40 fixed left-0 w-full transition-all duration-300 ${isScrolled ? "top-0" : "mt-4"
                     }`}
             >
                 <div className="px-4 container max-w-[1220px] mx-auto">

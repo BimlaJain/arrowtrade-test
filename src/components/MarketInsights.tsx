@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 const MarketInsights = () => {
     return (
-        <div className='bg-dark-black pt-[90px] pb-10'>
+        <div className='bg-dark-black xl:pt-[180px] xl:pb-[190px] lg:py-28 md:py-20 py-16'>
             <div className="container max-w-[1140px] mx-auto px-4">
                 <div className="flex max-md:flex-col lg:justify-between justify-center gap-6 relative">
                     <div className='flex-1'>

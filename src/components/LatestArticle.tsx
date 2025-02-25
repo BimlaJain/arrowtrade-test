@@ -11,7 +11,7 @@ const LatestArticle = () => {
     const featuredBlogs = BLOGS_CARD.filter((blog) => blog.isFeatured);
 
     return (
-        <div className="relative container max-xl:px-4 max-w-[1140px] mx-auto lg:py-[180px] md:py-24 py-16">
+        <div id="trade" className="relative container max-xl:px-4 max-w-[1140px] mx-auto lg:py-[180px] md:py-24 py-16">
             <h1 className="md:mt-[15px] lg:text-5xl md:text-4xl text-3xl font-normal text-white text-center leading-customMd md:pb-[70px] pb-10">
                 Latest <span className="text-sky-blue font-bold">Article</span>
             </h1>
@@ -42,7 +42,7 @@ const LatestArticle = () => {
                                             <span className="border-sky-blue border rounded-full leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center bg-simple-black">{blog.category}</span>
                                             <span className="text-white/70 bg-light-black font-normal leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px] whitespace-nowrap">{blog.readTime} min read</span>
                                         </div>
-                                        <h3 className="text-xl font-semibold">{blog.title}</h3>
+                                        <h3 className="text-xl font-semibold pt-10 pb-3">{blog.title}</h3>
                                         <div className="overflow-auto flex-grow scrollbar-hide">
                                             <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
                                             </div>
@@ -64,7 +64,7 @@ const LatestArticle = () => {
             )}
 
             {featuredBlogs.length > 0 && (
-                <div className="hidden md:flex justify-between absolute top-1/2 left-[-50px] right-[-50px] transform -translate-y-1/2">
+                <div className="hidden md:flex justify-between absolute top-[55%] left-[-50px] right-[-50px] transform -translate-y-1/2">
                     <button className="swiper-button-prev size-[60px] bg-sky-blue text-sky-blue py-[17px] px-[15px] rounded-full transition-all duration-300 ease-in-out border border-sky-blue group">
                         <Image src="/assets/images/svg/slider-arrow.svg" alt="slider-arrow" width={30} height={27} className="w-[30px] filter group-hover:invert invert-0 brightness-0" />
                     </button>

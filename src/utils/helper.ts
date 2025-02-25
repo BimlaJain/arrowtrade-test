@@ -46,7 +46,7 @@ export const HEADER_LIST = [
     },
     {
         title: "Arrowtrade",
-        link: "#arrowtrade",
+        link: "#arrow",
     },
     {
         title: "Blog",
@@ -120,7 +120,7 @@ export const BLOGS_CARD = [
         title: "The Psychology of Trading",
         category: "Productivity",
         readTime: 4,
-        description: "Trading isn’t just about numbers, charts, and market analysis—it’s also a game of emotions and psychology.",
+        description: "Trading isn’t just about numbers, charts, and market analysis—it’s also the a game of emotions and psychology.",
         author: "Kristin Watson",
         authorImage: "/assets/images/png/kristin.png",
         date: "20 Dec 2024",

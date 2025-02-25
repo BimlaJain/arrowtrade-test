@@ -47,7 +47,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
             },
             {
                 id: blogs.length + 2,
-                title: `Advanced Trading Platform ${blogs.length + 2}`,
+                title: `Advanced Trading Platform`,
                 category: "Productivity",
                 readTime: 5,
                 description: "Experience lightning-fast execution, customizable charts, and an intuitive interface designed for traders of all levels.",
@@ -59,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
             },
             {
                 id: blogs.length + 3,
-                title: `Mastering The Markets ${blogs.length + 3}`,
+                title: `Mastering The Markets `,
                 category: "Productivity",
                 readTime: 5,
                 description: "Mastering the markets involves developing a comprehensive understanding of how financial markets work, creating.",
@@ -94,6 +94,12 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
     return (
         <div id="home" className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
             <NavBar />
+            <div className="absolute left-0 top-[3%] lg:block hidden ">
+                <Image src="/assets/images/png/left-ellipse.png" alt="left-ellipse" width={237} height={237} className="" />
+            </div>
+            <div className="absolute right-0 bottom-[10%]">
+                <Image src="/assets/images/png/right-ellipse.png" alt="left-ellipse" width={237} height={237} className="size-[237px]" />
+            </div>
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
                     <h1 className="md:mt-[15px] lg:text-customMd md:text-6xl text-customXmd font-normal text-white lg:max-w-[700px] max-w-[718px] mx-auto text-center max-lg:leading-customMd">
@@ -127,9 +133,9 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                                         <div className="px-3 pb-[39px]">
                                             <div className="flex gap-2 mb-2 absolute top-[45%]">
                                                 <span className="border-sky-blue border rounded-full bg-simple-black leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center">{blog.category}</span>
-                                                <span className="text-white/70 bg-light-black font-normal leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px]">{blog.readTime} min read</span>
+                                                <span className="text-white/70 bg-light-black font-normal whitespace-nowrap leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px]">{blog.readTime} min read</span>
                                             </div>
-                                            <h3 className="text-xl font-semibold pt-6">{blog.title}</h3>
+                                            <h3 className="text-xl font-semibold pt-10 pb-3">{blog.title}</h3>
                                             <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-2 mt-6">

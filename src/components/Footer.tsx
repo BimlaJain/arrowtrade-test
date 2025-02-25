@@ -6,7 +6,7 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <div className='bg-cover bg-no-repeat bg-dark-grey pt-[60px]' style={{ backgroundImage: `url(/assets/images/webp/footer-bg.webp)` }}>
+        <div id='arrow' className='bg-cover bg-no-repeat bg-dark-grey pt-[60px]' style={{ backgroundImage: `url(/assets/images/webp/footer-bg.webp)` }}>
             <div className="container max-w-[1220px] mx-auto px-4">
                 <Image src="/assets/images/png/logo.png" alt="real-time"
                     className="max-w-[150px] w-full object-cover pointer-events-none mb-[30px]" width={150} height={44} />

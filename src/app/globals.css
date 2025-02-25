@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html , body{
+    scroll-behavior: smooth;
+}
+
 #nprogress .bar {
     background: white !important;
    height: 4px !important;
