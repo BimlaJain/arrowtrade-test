@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
                                             <p className="text-white absolute top-4 right-4">{blog.date}</p>
                                             <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
                                             <div className="px-3 pb-[39px]">
-                                                <div className="flex justify-between mb-2 absolute top-[41%]">
+                                                <div className="flex md:gap-5 gap-2 mb-2 absolute top-[41%]">
                                                     <span className="border-sky-blue border rounded-full bg-simple-black text-xs px-[42px] h-[37px] flex items-center">{blog.category}</span>
                                                     <span className="text-white/70 bg-light-black text-sm border-white border h-[37px] flex items-center rounded-full px-[41px]">{blog.readTime} min read</span>
                                                 </div>
