@@ -7,6 +7,7 @@ import LatestArticle from "@/components/LatestArticle";
 import { BLOGS_CARD } from "@/utils/helper";
 import Image from "next/image";
 import MarketInsights from "@/components/MarketInsights";
+import { Suspense } from "react";
 
 const formatTitle = (title: string) =>
     title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
@@ -18,8 +19,10 @@ export default function BlogDetail() {
 
     return (
         <div>
-            <NavBar />
-
+          <Suspense>
+                <NavBar />
+            </Suspense>
+<Suspense>
             <section className="bg-dark-black text-white md:pl-4 max-md:px-4 max-w-[1920] mx-auto">
                 <div className="2xl:max-w-[1400px] mx-auto flex max-md:flex-wrap  items-center relative lg:justify-between justify-center gap-8">
                     <div className="max-w-[510px] lg:ml-auto mx-auto  pt-[100px] max-md:pr-4">
@@ -60,10 +63,17 @@ export default function BlogDetail() {
                         />
                     </div>
                 </div>
-            </section>
-            <MarketInsights/>
-            <LatestArticle />
-            <Footer />
+                </section>
+            </Suspense>
+            <Suspense>
+                <MarketInsights />
+            </Suspense>
+            <Suspense>
+                <LatestArticle />
+            </Suspense>
+            <Suspense>
+                <Footer />
+            </Suspense>
         </div>
     );
 }
