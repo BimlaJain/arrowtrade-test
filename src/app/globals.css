@@ -1,57 +1,62 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html , body{
+body {
+    font-family: 'inter', sans-serif;
     scroll-behavior: smooth;
 }
 
 #nprogress .bar {
-    background: white !important;
-   height: 4px !important;
+    background: black !important;
+    height: 4px !important;
 }
 
-.swiper-wrapper{
-    display: flex !important;
-    justify-content: center !important;
-}
-
-.swiper-button-prev:after{
+.swiper-button-prev:after {
     display: none !important;
 }
 
-.swiper-button-next:after{
+.swiper-button-next:after {
     display: none !important;
 }
- 
- .swiper-button-next{
+
+.swiper-button-next {
     width: 60px !important;
     height: 60px !important;
-    right: -24px !important;
+    right: -6% !important;
 
- }
+}
 
- .swiper-button-prev{
+.swiper-button-prev {
     width: 60px !important;
-     height: 60px !important;
-    left: -24px !important;
- }
+    height: 60px !important;
+    left: -6% !important;
+}
 
- .swiper-pagination-fraction,
- .swiper-pagination-custom,
- .swiper-horizontal > .swiper-pagination-bullets,
- .swiper-pagination-bullets.swiper-pagination-horizontal{
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
     top: 80% !important;
- }
- @media (max-width: 1350.99px) {
-     .swiper-button-next {
-         display: none !important;
-     }
+}
 
-     .swiper-button-prev {
-         display: none !important;
-     }
+/* Pagination Dots Color */
+.swiper-pagination-bullet {
+    background: white !important;
+    /* Sky color */
 
- }
+    transition: ease-in-out;
+}
+
+
+@media (max-width: 1350.99px) {
+    .swiper-button-next {
+        display: none !important;
+    }
+
+    .swiper-button-prev {
+        display: none !important;
+    }
+
+}
