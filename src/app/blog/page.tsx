@@ -25,9 +25,9 @@ const Page = () => {
     <div>
       <Suspense>
         <Hero pageIndex={pageIndex} onPageChange={handlePageChange} />
-    </Suspense>
         <LatestArticle />
         <Footer />
+    </Suspense>
     </div>
   );
 };

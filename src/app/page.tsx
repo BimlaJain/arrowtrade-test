@@ -9,10 +9,12 @@ import { Suspense } from "react";
 const Page = () => {
   return (
     <div>
+      <Suspense>
       <Hero pageIndex={0} onPageChange={() => {}} />
       <LatestArticle />
       <Footer />
-      <BackToTop/>
+        <BackToTop />
+      </Suspense>
     </div>
   );
 };

@@ -124,7 +124,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
 
                 <div className="pt-[70px]">
                     {filteredBlogs.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
+                        <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
                             {filteredBlogs.map((blog) => (
                                 <div onClick={() => handleCardClick(blog.title)} key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
                                     <div className="bg-black/90 text-white relative rounded-[10px] overflow-hidden">
