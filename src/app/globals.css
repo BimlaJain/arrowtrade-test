@@ -13,6 +13,11 @@ html , body{
    height: 4px !important;
 }
 
+.swiper-wrapper{
+    display: flex !important;
+    justify-content: center !important;
+}
+
 .swiper-button-prev:after{
     display: none !important;
 }

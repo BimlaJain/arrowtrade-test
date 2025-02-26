@@ -5,158 +5,96 @@ import React from "react";
 import NavBar from "./common/NavBar";
 import Image from "next/image";
 import { BLOGS_CARD } from "@/utils/helper";
-import CommonButton from "./common/CommonButton";
-
-// interface HeroProps {
-//     pageIndex?: number;
-//     onPageChange?: (newPageIndex: number) => void;
-// }
 
 const Hero: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
+
     const pageQuery = Number(searchParams.get("page")) || 1;
+    const searchQueryFromUrl = searchParams.get("search") || "";
 
-    const [blogs, setBlogs] = useState(BLOGS_CARD);
-    const [searchQuery, setSearchQuery] = useState("");
-      const currentPage = searchParams.get("page") || "1"; 
-      const [pageData, setPageData] = useState(Number(currentPage));
-    
-      useEffect(() => {
-        setPageData(Number(currentPage)); 
-      }, [currentPage]);
-    
-    //   const handlePageChange = (newPageIndex: number) => {
-    //     router.push(`/blog?page=${newPageIndex}`, { scroll: false });
-    //     setPageData(newPageIndex);
-    //   };
-    
+    const [searchQuery, setSearchQuery] = useState(searchQueryFromUrl);
+    const [currentPage, setCurrentPage] = useState(pageQuery);
 
-    useEffect(() => {
-        const storedBlogs = localStorage.getItem("blogsData");
-        if (storedBlogs) {
-            setBlogs(JSON.parse(storedBlogs)); 
-        } else {
-            localStorage.setItem("blogsData", JSON.stringify(BLOGS_CARD)); 
-        }
-    }, []);
+    const initialBlogs = 6;
+    const loadMoreCount = 3;
 
-    const handlePageChange = (newIndex: number) => {
-        router.push(`/blog?page=${newIndex}`, { scroll: false });
-        setPageData(newIndex);
-
-        const newBlogs = [
-            {
-                id: blogs.length + 1,
-                title: `Real-Time Market Insights`,
-                category: "Productivity",
-                readTime: 5,
-                description: "Stay ahead with AI-driven analytics, real-time news updates, and expert market research to make informed decisions.",
-                author: "Jerome Bell",
-                authorImage: "/assets/images/png/jerome.png",
-                date: "31 Jan 2025",
-                image: "/assets/images/png/real-time.png",
-                isFeatured: true,
-            },
-            {
-                id: blogs.length + 2,
-                title: `Advanced Trading Platform`,
-                category: "Productivity",
-                readTime: 5,
-                description: "Experience lightning-fast execution, customizable charts, and an intuitive interface designed for traders of all levels.",
-                author: "Eleanor Pena",
-                authorImage: "/assets/images/png/eleanor.png",
-                image: "/assets/images/png/trading.png",
-                isFeatured: true,
-                date: "31 Jan 2025",
-            },
-            {
-                id: blogs.length + 3,
-                title: `Mastering The Markets `,
-                category: "Productivity",
-                readTime: 5,
-                description: "Mastering the markets involves developing a comprehensive understanding of how financial markets work, creating.",
-                author: "Wade Warren",
-                authorImage: "/assets/images/png/wade.png", 
-                image: "/assets/images/png/mastring.png",
-                isFeatured: true,
-                date: "20 Dec 2024",
-            },
-        ];
-
-        const updatedBlogs = [...blogs, ...newBlogs];
-        setBlogs(updatedBlogs);
-
-        localStorage.setItem("blogsData", JSON.stringify(updatedBlogs));
-        localStorage.setItem("pageIndex", newIndex.toString());
-    };
-
-    const filteredBlogs = blogs.filter(blog =>
+    const filteredBlogs = BLOGS_CARD.filter(blog =>
         blog.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const handleCardClick = (blogTitle: string) => {
-        const formattedSlug = blogTitle
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, "") 
-            .trim()
-            .replace(/\s+/g, "-"); 
+    const displayedBlogs = filteredBlogs.slice(0, initialBlogs + (currentPage - 1) * loadMoreCount);
 
+    const handlePageChange = () => {
+        const newPage = currentPage + 1;
+        setCurrentPage(newPage);
+
+        router.push(`/blog?page=${newPage}`, { scroll: false });
+    };
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+
+        if (value.trim() === "") {
+            router.push(`/blog`, { scroll: false });
+        } else {
+            router.push(`/blog?search=${value}`, { scroll: false });
+        }
+    };
+
+    const handleCardClick = (blogTitle: string) => {
+        const formattedSlug = blogTitle.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
         router.push(`/blog/${formattedSlug}`);
     };
+
     return (
-        <div id="home"  className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
+        <div id="home" className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
             <NavBar />
-            <div className="absolute left-0 top-[3%] lg:block hidden ">
-                <Image src="/assets/images/png/left-ellipse.png" alt="left-ellipse" width={237} height={237} className="" />
-            </div>
-            <div className="absolute right-0 bottom-[10%]">
-                <Image src="/assets/images/png/right-ellipse.png" alt="left-ellipse" width={237} height={237} className="size-[237px]" />
-            </div>
             <div className="container max-w-[1220px] mx-auto px-4 relative z-20">
                 <div className="flex flex-col xl:pt-[170px] pt-[140px]">
-                    <h1 className="md:mt-[15px] lg:text-customMd md:text-6xl text-customXmd font-normal text-white lg:max-w-[700px] max-w-[718px] mx-auto text-center max-lg:leading-customMd">
+                    <h1 className="md:mt-[15px] lg:text-customMd md:text-6xl text-customXmd font-normal text-white lg:max-w-[700px] mx-auto text-center">
                         Unlock Knowledge with Our <span className="text-sky-blue font-bold">Featured Articles</span>
                     </h1>
-                    <p className="font-normal md:text-base text-xs text-white/70 pt-4 leading-customXxmd max-w-[674px] mx-auto text-center">
-                        Explore our latest articles, insights, and expert advice on industry trends. Stay informed, gain new perspectives, and discover valuable tips to help you stay ahead.
+                    <p className="text-white/70 text-base pt-4 max-w-[674px] mx-auto text-center">
+                        Explore our latest articles, insights, and expert advice on industry trends.
                     </p>
                     <form className="pt-[30px]">
                         <div className="flex gap-[10px] border border-white/20 py-[17px] pl-[30px] items-center max-w-[558px] mx-auto rounded-full">
-                            <Image src="/assets/images/svg/search.svg" height={18} width={18} alt="search-icon" className="stroke-white/70 inset-0" />
+                            <Image src="/assets/images/svg/search.svg" height={18} width={18} alt="search-icon" />
                             <input
                                 type="text"
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={handleSearchChange}
                                 placeholder="Search by title..."
-                                className="bg-transparent text-white/70 text-base font-normal leading-customXmd placeholder:text-white/70 outline-none"
+                                className="bg-transparent text-white/70 text-base placeholder:text-white/70 outline-none"
                             />
                         </div>
                     </form>
                 </div>
 
                 <div className="pt-[70px]">
-                    {filteredBlogs.length > 0 ? (
+                    {displayedBlogs.length > 0 ? (
                         <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
-                            {filteredBlogs.map((blog) => (
-                                <div onClick={() => handleCardClick(blog.title)} key={blog.id} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
-                                    <div className="bg-black/90 text-white relative rounded-[10px] overflow-hidden">
-                                        <p className="text-white text-base font-semibold leading-customXmd absolute top-4 right-4">{blog.date}</p>
+                            {displayedBlogs.map((blog) => (
+                                <div key={blog.id} onClick={() => handleCardClick(blog.title)} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] mx-auto">
+                                    <div className="bg-black/90 text-white relative h-[498px] rounded-[10px] overflow-hidden">
+                                        <p className="text-white absolute top-4 right-4">{blog.date}</p>
                                         <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
                                         <div className="px-3 pb-[39px]">
-                                            <div className="flex gap-2 mb-2 absolute top-[45%]">
-                                                <span className="border-sky-blue border rounded-full bg-simple-black leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center">{blog.category}</span>
-                                                <span className="text-white/70 bg-light-black font-normal whitespace-nowrap leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px]">{blog.readTime} min read</span>
+                                            <div className="flex justify-between mb-2 absolute top-[41%]">
+                                                <span className="border-sky-blue border rounded-full bg-simple-black text-xs px-[42px] h-[37px] flex items-center">{blog.category}</span>
+                                                <span className="text-white/70 bg-light-black text-sm border-white border h-[37px] flex items-center rounded-full px-[41px]">{blog.readTime} min read</span>
                                             </div>
-                                            <h3 className="text-xl font-semibold pt-10 pb-3">{blog.title}</h3>
-                                            <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
+                                            <h3 className="text-xl font-semibold pt-5 pb-3">{blog.title}</h3>
+                                            <p className="text-white/70 mb-3 text-base">{blog.description}</p>
                                             <div className="flex justify-between items-center">
                                                 <div className="flex items-center gap-2 mt-6">
                                                     <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
-                                                    <p className="text-white text-base leading-customXmd font-semibold">{blog.author}</p>
+                                                    <p className="text-white text-base font-semibold">{blog.author}</p>
                                                 </div>
-                                                <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500 ease-linear"/>
-                                           </div>
+                                                <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -165,13 +103,15 @@ const Hero: React.FC = () => {
                     ) : (
                         <p className="text-center text-white/70 text-xl mt-6">No blogs found</p>
                     )}
-                    <button
-                        onClick={() => handlePageChange(pageData + 1)}
-                        className="mt-6 bg-sky-blue text-black text-base font-semibold hover:text-sky-blue px-[26.7px] py-[14.6px] flex mx-auto rounded-full hover:bg-transparent border border-sky-blue transition-all duration-500"
-                    >
-                        See All Blogs
-                    </button>
-                    {/* <CommonButton onClick={() => handlePageChange(pageIndex + 1)}  text=" See All Blogs" myClass="!mt-6 !px-[26.7px] !py-[14.6px] !flex !mx-auto !border-sky-blue !bg-sky-blue !text-black hover:!text-sky-blue hover:!bg-transparent"/> */}
+
+                    {displayedBlogs.length < filteredBlogs.length && (
+                        <button
+                            onClick={handlePageChange}
+                            className="mt-6 bg-sky-blue text-black text-base font-semibold hover:text-sky-blue px-[26.7px] py-[14.6px] flex mx-auto rounded-full hover:bg-transparent border border-sky-blue transition-all duration-500"
+                        >
+                            See All Blogs
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@ export default function BlogDetail() {
             <section className="bg-dark-black text-white md:pl-4 max-md:px-4 max-w-[1920] mx-auto">
                 <div className="2xl:max-w-[1400px] mx-auto flex max-md:flex-wrap  items-center relative lg:justify-between justify-center gap-8">
                     <div className="max-w-[510px] lg:ml-auto mx-auto  pt-[100px] max-md:pr-4">
-                        <h2 className="lg:text-customMd md:text-5xl text-4xl font-bold pb-4 lg:max-w-[480px] leading-customMd">
+                        <h2 className="lg:text-customMd md:text-5xl text-4xl font-normal pb-4 lg:max-w-[480px] leading-customMd">
                             {(() => {
                                 const words = blog.title.split(" ");
                                 const lastTwoWords = words.slice(-2).join(" ");
@@ -33,7 +33,7 @@ export default function BlogDetail() {
                                 return (
                                     <>
                                         {remainingWords}{" "}
-                                        <span className="text-sky-blue">{lastTwoWords}</span> 
+                                        <span className="text-sky-blue font-bold">{lastTwoWords}</span> 
                                     </>
                                 );
                             })()}
