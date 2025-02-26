@@ -10,7 +10,7 @@ const Page = () => {
   return (
     <div>
       <Suspense>
-      <Hero pageIndex={0} onPageChange={() => {}} />
+      <Hero  />
       <LatestArticle />
       <Footer />
         <BackToTop />

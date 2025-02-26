@@ -7,18 +7,30 @@ import Image from "next/image";
 import { BLOGS_CARD } from "@/utils/helper";
 import CommonButton from "./common/CommonButton";
 
-interface HeroProps {
-    pageIndex: number;
-    onPageChange: (newPageIndex: number) => void;
-}
+// interface HeroProps {
+//     pageIndex?: number;
+//     onPageChange?: (newPageIndex: number) => void;
+// }
 
-const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
+const Hero: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const pageQuery = Number(searchParams.get("page")) || 1;
 
     const [blogs, setBlogs] = useState(BLOGS_CARD);
     const [searchQuery, setSearchQuery] = useState("");
+      const currentPage = searchParams.get("page") || "1"; 
+      const [pageData, setPageData] = useState(Number(currentPage));
+    
+      useEffect(() => {
+        setPageData(Number(currentPage)); 
+      }, [currentPage]);
+    
+    //   const handlePageChange = (newPageIndex: number) => {
+    //     router.push(`/blog?page=${newPageIndex}`, { scroll: false });
+    //     setPageData(newPageIndex);
+    //   };
+    
 
     useEffect(() => {
         const storedBlogs = localStorage.getItem("blogsData");
@@ -31,6 +43,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
 
     const handlePageChange = (newIndex: number) => {
         router.push(`/blog?page=${newIndex}`, { scroll: false });
+        setPageData(newIndex);
 
         const newBlogs = [
             {
@@ -92,7 +105,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
         router.push(`/blog/${formattedSlug}`);
     };
     return (
-        <div id="home" className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
+        <div id="home"  className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
             <NavBar />
             <div className="absolute left-0 top-[3%] lg:block hidden ">
                 <Image src="/assets/images/png/left-ellipse.png" alt="left-ellipse" width={237} height={237} className="" />
@@ -153,7 +166,7 @@ const Hero: React.FC<HeroProps> = ({ pageIndex, onPageChange }) => {
                         <p className="text-center text-white/70 text-xl mt-6">No blogs found</p>
                     )}
                     <button
-                        onClick={() => handlePageChange(pageIndex + 1)}
+                        onClick={() => handlePageChange(pageData + 1)}
                         className="mt-6 bg-sky-blue text-black text-base font-semibold hover:text-sky-blue px-[26.7px] py-[14.6px] flex mx-auto rounded-full hover:bg-transparent border border-sky-blue transition-all duration-500"
                     >
                         See All Blogs
