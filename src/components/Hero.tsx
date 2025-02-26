@@ -5,6 +5,7 @@ import React from "react";
 import NavBar from "./common/NavBar";
 import Image from "next/image";
 import { BLOGS_CARD } from "@/utils/helper";
+import Link from "next/link";
 
 const Hero: React.FC = () => {
     const router = useRouter();
@@ -76,30 +77,33 @@ const Hero: React.FC = () => {
                 <div className="pt-[70px]">
                     {displayedBlogs.length > 0 ? (
                         <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
-                            {displayedBlogs.map((blog) => (
-                                <div key={blog.id} onClick={() => handleCardClick(blog.title)} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] mx-auto">
-                                    <div className="bg-black/90 text-white relative h-[498px] rounded-[10px] overflow-hidden">
-                                        <p className="text-white absolute top-4 right-4">{blog.date}</p>
-                                        <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
-                                        <div className="px-3 pb-[39px]">
-                                            <div className="flex justify-between mb-2 absolute top-[41%]">
-                                                <span className="border-sky-blue border rounded-full bg-simple-black text-xs px-[42px] h-[37px] flex items-center">{blog.category}</span>
-                                                <span className="text-white/70 bg-light-black text-sm border-white border h-[37px] flex items-center rounded-full px-[41px]">{blog.readTime} min read</span>
-                                            </div>
-                                            <h3 className="text-xl font-semibold pt-5 pb-3">{blog.title}</h3>
-                                            <p className="text-white/70 mb-3 text-base">{blog.description}</p>
-                                            <div className="flex justify-between items-center">
-                                                <div className="flex items-center gap-2 mt-6">
-                                                    <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
-                                                    <p className="text-white text-base font-semibold">{blog.author}</p>
+                                {displayedBlogs.map((blog) => (
+                                    <Link key={blog.id} href={blog.title}>
+                                    <div onClick={() => handleCardClick(blog.title)} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] mx-auto">
+                                        <div className="bg-black/90 text-white relative h-[498px] rounded-[10px] overflow-hidden">
+                                            <p className="text-white absolute top-4 right-4">{blog.date}</p>
+                                            <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
+                                            <div className="px-3 pb-[39px]">
+                                                <div className="flex justify-between mb-2 absolute top-[41%]">
+                                                    <span className="border-sky-blue border rounded-full bg-simple-black text-xs px-[42px] h-[37px] flex items-center">{blog.category}</span>
+                                                    <span className="text-white/70 bg-light-black text-sm border-white border h-[37px] flex items-center rounded-full px-[41px]">{blog.readTime} min read</span>
                                                 </div>
-                                                <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500" />
+                                                <h3 className="text-xl font-semibold pt-5 pb-3">{blog.title}</h3>
+                                                <p className="text-white/70 mb-3 text-base">{blog.description}</p>
+                                                <div className="flex justify-between items-center">
+                                                    <div className="flex items-center gap-2 mt-6">
+                                                        <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
+                                                        <p className="text-white text-base font-semibold">{blog.author}</p>
+                                                    </div>
+                                                    <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+
                     ) : (
                         <p className="text-center text-white/70 text-xl mt-6">No blogs found</p>
                     )}

@@ -17,61 +17,61 @@ const LatestArticle = () => {
             </h1>
 
             {featuredBlogs.length > 0 ? (
-                <Swiper
-                    id="slider"
-                    spaceBetween={20}
-                    slidesPerView={1.2}
-                    loop={true}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
-                    navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
-                    breakpoints={{
-                        300: { slidesPerView: 1 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
-                    modules={[Navigation, Autoplay]}
-                >
-                    {featuredBlogs.map((blog) => (
-                        <SwiperSlide key={blog.id} className="!max-w-[366px] !w-full">
-                            <div className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] w-full sm:w-[80%] md:w-auto mx-auto">
-                                <div className="bg-black/90 text-white relative rounded-[10px]">
-                                    <p className="text-white text-base font-semibold leading-customXmd absolute top-4 right-4">{blog.date}</p>
-                                    <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
-                                    <div className="px-3 pb-[39px] flex flex-col">
-                                        <div className="flex gap-2 absolute top-[45%] mb-2">
-                                            <span className="border-sky-blue border rounded-full leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center bg-simple-black">{blog.category}</span>
-                                            <span className="text-white/70 bg-light-black font-normal leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px] whitespace-nowrap">{blog.readTime} min read</span>
-                                        </div>
-                                        <h3 className="text-xl font-semibold pt-10 pb-3">{blog.title}</h3>
-                                        <div className="overflow-auto flex-grow scrollbar-hide">
+                <div className="relative">
+                    <Swiper
+                        id="slider"
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        loop={true}
+                        autoplay={{ delay: 3000, disableOnInteraction: false }}
+                        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
+                        breakpoints={{
+                            640: { slidesPerView: 1 },
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3 }, // Now properly shows 3 slides on big screens
+                        }}
+                        modules={[Navigation, Autoplay]}
+                        className="!pl-0"
+                    >
+                        {featuredBlogs.map((blog) => (
+                            <SwiperSlide key={blog.id} className="flex justify-center">
+                                <div className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] w-full max-w-[364px]">
+                                    <div className="bg-black/90 text-white relative rounded-[10px]">
+                                        <p className="text-white text-base font-semibold leading-customXmd absolute top-4 right-4">{blog.date}</p>
+                                        <Image src={blog.image} alt={blog.title} width={364} height={237} className="w-full h-[237px] object-cover rounded-md mb-4" />
+                                        <div className="px-3 pb-[39px] flex flex-col">
+                                            <div className="flex gap-2 absolute top-[45%] mb-2">
+                                                <span className="border-sky-blue border rounded-full leading-customXmd hover:border-white text-xs px-[42px] h-[37px] py-[3px] flex items-center bg-simple-black">{blog.category}</span>
+                                                <span className="text-white/70 bg-light-black font-normal leading-customXmd text-sm border-white border h-[37px] flex items-center rounded-full px-[41px] py-[9.5px] whitespace-nowrap">{blog.readTime} min read</span>
+                                            </div>
+                                            <h3 className="text-xl font-semibold pt-10 pb-3">{blog.title}</h3>
                                             <p className="text-white/70 mb-3 font-normal leading-customXmd text-base">{blog.description}</p>
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center gap-2 mt-6">
+                                                    <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
+                                                    <p className="text-white text-base leading-customXmd font-semibold">{blog.author}</p>
+                                                </div>
+                                                <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500 ease-linear" />
                                             </div>
-                                        <div className="flex justify-between items-center">
-                                            <div className="flex items-center gap-2 mt-6">
-                                                <Image src={blog.authorImage} alt={blog.author} width={50} height={50} className="size-[50px] rounded-full" />
-                                                <p className="text-white text-base leading-customXmd font-semibold">{blog.author}</p>
-                                            </div>
-                                            <Image src="/assets/images/svg/right-arrow.svg" alt="right-arrow" width={20} height={18} className="mt-5 hover:translate-x-1 transition-all duration-500 ease-linear" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                    {/* Navigation buttons */}
+                    <div className="hidden md:flex justify-between absolute top-1/2 left-0 right-0 px-4 -translate-y-1/2">
+                        <button className="swiper-button-prev size-[60px] bg-sky-blue text-sky-blue flex items-center justify-center rounded-full transition-all duration-300 ease-in-out border border-sky-blue group">
+                            <Image src="/assets/images/svg/slider-arrow.svg" alt="slider-arrow" width={30} height={27} className="w-[30px] filter group-hover:invert invert-0 brightness-0" />
+                        </button>
+                        <button className="swiper-button-next size-[60px] bg-sky-blue text-sky-blue flex items-center justify-center rounded-full transition-all duration-300 ease-in-out border border-sky-blue group">
+                            <Image src="/assets/images/svg/slider-right-arrow.svg" alt="slider-right-arrow" height={27} width={30} className="w-[30px] filter group-hover:invert invert-0 brightness-0" />
+                        </button>
+                    </div>
+                </div>
             ) : (
                 <p className="text-center text-white/70 text-xl mt-6">No blogs found</p>
-            )}
-
-            {featuredBlogs.length > 0 && (
-                <div className="hidden md:flex justify-between absolute top-[55%] left-[-50px] right-[-50px] transform -translate-y-1/2">
-                    <button className="swiper-button-prev size-[60px] bg-sky-blue text-sky-blue py-[17px] px-[15px] rounded-full transition-all duration-300 ease-in-out border border-sky-blue group">
-                        <Image src="/assets/images/svg/slider-arrow.svg" alt="slider-arrow" width={30} height={27} className="w-[30px] filter group-hover:invert invert-0 brightness-0" />
-                    </button>
-                    <button className="swiper-button-next size-[60px] bg-sky-blue text-sky-blue p-3 rounded-full transition-all duration-300 ease-in-out border border-sky-blue group">
-                        <Image src="/assets/images/svg/slider-right-arrow.svg" alt="slider-right-arrow" height={27} width={30} className="w-[30px] filter group-hover:invert invert-0 brightness-0" />
-                    </button>
-                </div>
             )}
         </div>
     );
