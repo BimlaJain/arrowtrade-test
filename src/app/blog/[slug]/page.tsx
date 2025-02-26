@@ -7,7 +7,6 @@ import LatestArticle from "@/components/LatestArticle";
 import { BLOGS_CARD } from "@/utils/helper";
 import Image from "next/image";
 import MarketInsights from "@/components/MarketInsights";
-import { Suspense } from "react";
 
 const formatTitle = (title: string) =>
     title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");

@@ -48,6 +48,8 @@ const Hero: React.FC = () => {
         const formattedSlug = blogTitle.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
         router.push(`/blog/${formattedSlug}`);
     };
+    const formatTitle = (title: string) =>
+        title.toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
 
     return (
         <div id="home" className="bg-center bg-cover bg-no-repeat relative overflow-hidden">
@@ -78,7 +80,7 @@ const Hero: React.FC = () => {
                     {displayedBlogs.length > 0 ? (
                         <div className="grid grid-cols-1 cursor-pointer md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1140px] mx-auto justify-center">
                                 {displayedBlogs.map((blog) => (
-                                    <Link key={blog.id} href={blog.title}>
+                                  <Link key={blog.id} href={`/blog/${formatTitle(blog.title)}`}>
                                     <div onClick={() => handleCardClick(blog.title)} className="bg-gradient-to-bl from-sky-blue/0 to-sky-blue/100 p-[1px] rounded-[10px] max-w-[364px] mx-auto">
                                         <div className="bg-black/90 text-white relative h-[498px] rounded-[10px] overflow-hidden">
                                             <p className="text-white absolute top-4 right-4">{blog.date}</p>
