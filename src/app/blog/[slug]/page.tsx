@@ -19,10 +19,8 @@ export default function BlogDetail() {
 
     return (
         <div>
-          <Suspense>
-                <NavBar />
-            </Suspense>
-        <Suspense>
+            <NavBar />
+
             <section className="bg-dark-black text-white md:pl-4 max-md:px-4 max-w-[1920] mx-auto">
                 <div className="2xl:max-w-[1400px] mx-auto flex max-md:flex-wrap  items-center relative lg:justify-between justify-center gap-8">
                     <div className="max-w-[510px] lg:ml-auto mx-auto  pt-[100px] max-md:pr-4">
@@ -63,17 +61,10 @@ export default function BlogDetail() {
                         />
                     </div>
                 </div>
-                </section>
-            </Suspense>
-            <Suspense>
-                <MarketInsights />
-            </Suspense>
-            <Suspense>
-                <LatestArticle />
-            </Suspense>
-            <Suspense>
-                <Footer />
-            </Suspense>
+            </section>
+            <MarketInsights/>
+            <LatestArticle />
+            <Footer />
         </div>
     );
 }

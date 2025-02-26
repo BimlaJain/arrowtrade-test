@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { Suspense } from "react";
+
 
 
 export const metadata: Metadata = {
@@ -25,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-Inter bg-dark-black antialiased">
-        <ClientLayout>  {children}</ClientLayout>
+        <Suspense>
+          <ClientLayout>  {children}</ClientLayout>
+        </Suspense>
+       
       </body>
     </html>
   );

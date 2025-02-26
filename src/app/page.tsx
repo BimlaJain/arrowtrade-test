@@ -10,9 +10,9 @@ const Page = () => {
   return (
     <div>
       <Suspense>
-      <Hero  />
-      <LatestArticle />
-      <Footer />
+        <Hero />
+        <LatestArticle />
+        <Footer />
         <BackToTop />
       </Suspense>
     </div>
